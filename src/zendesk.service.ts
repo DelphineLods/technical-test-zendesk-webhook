@@ -23,7 +23,15 @@ export class ZendeskService {
 
   constructor(private readonly zendeskConfig: ZendeskConfig) {}
 
-  copyParentTicketToChildTicket(ticketId: number, parentId: number): Ticket {}
+  /**
+   * Objectives:
+   * - Keep the ticket assigned to the right team or group.
+   * - Copy only the important fields for customer tracking, like the contact reason and the store
+   * - Choose the child ticket's requester based on the store:
+   *      • use the Zendesk settings to find the right requester,
+   *      • use a default system account if there is no match.
+   */
+  copyParentTicketToChildTicket(childTicketId: number, parentTicketId: number): Ticket {}
 
   getTicket(ticketId: number): Ticket {
     const ticket = this.tickets.get(ticketId)

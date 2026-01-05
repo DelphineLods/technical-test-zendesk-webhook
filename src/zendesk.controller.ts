@@ -7,8 +7,17 @@ import type { Ticket } from './types/Ticket'
 export class ZendeskController {
   constructor(private readonly zendeskService: ZendeskService) {}
 
-  // In Zendesk, it is possible to create a child ticket from a parent ticket
-  // When a child ticket is created, Zendesk triggers this endpoint
+  /**
+   * Endpoint triggered when a child ticket is created in Zendesk.
+   * Copies relevant fields from a parent ticket to the child ticket.
+   *
+   * Business Requirements:
+   * - Copy specific fields from parent to child
+   * - Determine the correct requester for the child ticket
+   *
+   * @param ticketId Child ticket ID
+   * @param payload Payload containing parent ticket ID
+   */
   @Post(String.raw`/:ticketId\:inherit-parent-fields`)
   inheritParentTicketFields(
     @Param('ticketId', ParseIntPipe) ticketId: number,

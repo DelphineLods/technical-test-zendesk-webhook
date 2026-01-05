@@ -6,8 +6,6 @@ export class ZendeskConfig {
     contactReason: 10000005,
   }
 
-  customFieldsToCopyToChild: Array<keyof typeof this.zendeskCustomFieldIds> = ['contactReason', 'store']
-
   systemAccountId = 101
 
   storeToRequesterMap: Record<string, number> = {
