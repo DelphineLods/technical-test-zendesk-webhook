@@ -9,11 +9,7 @@ export class ZendeskController {
 
   /**
    * Endpoint triggered when a child ticket is created in Zendesk.
-   * Copies relevant fields from a parent ticket to the child ticket.
-   *
-   * Business Requirements:
-   * - Copy specific fields from parent to child
-   * - Determine the correct requester for the child ticket
+   * Copies relevant fields from a parent ticket to the child ticket and set the correct requester
    *
    * @param ticketId Child ticket ID
    * @param payload Payload containing parent ticket ID
