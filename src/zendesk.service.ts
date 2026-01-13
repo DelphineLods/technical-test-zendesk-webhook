@@ -5,6 +5,7 @@ import { Ticket } from './types/Ticket'
 
 @Injectable()
 export class ZendeskService {
+  // Mock ticket storage
   private readonly tickets = new Map<number, Ticket>([
     [
       1,
@@ -19,6 +20,15 @@ export class ZendeskService {
         ],
       },
     ],
+    [
+      2,
+      {
+        id: 2,
+        parentId: 1,
+        group_id: undefined,
+        custom_fields: [],
+      },
+    ],
   ])
 
   constructor(private readonly zendeskConfig: ZendeskConfig) {}
@@ -26,15 +36,16 @@ export class ZendeskService {
   /**
    * Objectives:
    * - Keep the ticket group assigned to the right team.
-   * - Copy only the specific fields for customer tracking, the contact reason and the store
+   * - Copy only the specific fields for customer tracking : the contact reason and the store
    * - Choose the child ticket's requester based on the store:
    *      • use the Zendesk settings to find the right requester,
    *      • use a default system account if there is no match.
    */
-  copyParentTicketToChildTicket(childTicketId: number, parentTicketId: number): Ticket {
+  copyTicketDataFromParent(childTicketId: number, parentTicketId: number): Ticket {
     // To implement
   }
 
+  // Mock method to simulate Zendesk API interactions
   getTicket(ticketId: number): Ticket {
     const ticket = this.tickets.get(ticketId)
 
@@ -45,6 +56,7 @@ export class ZendeskService {
     return ticket
   }
 
+  // Mock method to simulate Zendesk API interactions
   updateTicket(ticketId: number, data: UpdateTicketRequest): Ticket {
     const ticketUpdated: Ticket = {
       id: ticketId,

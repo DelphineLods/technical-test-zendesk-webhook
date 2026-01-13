@@ -19,6 +19,6 @@ export class ZendeskController {
     @Param('ticketId', ParseIntPipe) ticketId: number,
     @Body(new ValidationPipe()) payload: InheritParentTicketFieldsPayload,
   ): Ticket {
-    return this.zendeskService.copyParentTicketToChildTicket(ticketId, payload.parentId)
+    return this.zendeskService.copyTicketDataFromParent(ticketId, payload.parentId)
   }
 }
