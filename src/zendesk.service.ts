@@ -33,17 +33,7 @@ export class ZendeskService {
 
   constructor(private readonly zendeskConfig: ZendeskConfig) {}
 
-  /**
-   * Objectives:
-   * - Keep the ticket group assigned to the right team.
-   * - Copy only the specific fields for customer tracking : the contact reason and the store
-   * - Choose the child ticket's requester based on the store:
-   *      • use the Zendesk settings to find the right requester,
-   *      • use a default system account if there is no match.
-   */
-  copyTicketDataFromParent(childTicketId: number, parentTicketId: number): Ticket {
-    // To implement
-  }
+  copyTicketDataFromParent(childTicketId: number, parentTicketId: number): Ticket {}
 
   // Mock method to simulate Zendesk API interactions
   getTicket(ticketId: number): Ticket {
