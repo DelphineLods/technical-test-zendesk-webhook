@@ -1,11 +1,11 @@
 import { Body, Controller, Param, ParseIntPipe, Post, ValidationPipe } from '@nestjs/common'
-import { ZendeskService } from './zendesk.service'
+import { TicketsService } from './tickets.service'
 import { InheritParentTicketFieldsPayload } from './types/InheritParentTicketFieldsPayload'
 import type { Ticket } from './types/Ticket'
 
 @Controller()
-export class ZendeskController {
-  constructor(private readonly zendeskService: ZendeskService) {}
+export class TicketsController {
+  constructor(private readonly ticketsService: TicketsService) {}
 
   /**
    * Endpoint triggered when a child ticket is created in Zendesk.
@@ -19,6 +19,6 @@ export class ZendeskController {
     @Param('ticketId', ParseIntPipe) ticketId: number,
     @Body(new ValidationPipe()) payload: InheritParentTicketFieldsPayload,
   ): Ticket {
-    return this.zendeskService.copyTicketDataFromParent(ticketId, payload.parentId)
+    return this.ticketsService.copyTicketDataFromParent(ticketId, payload.parentId)
   }
 }

@@ -1,18 +1,19 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { ZendeskController } from './zendesk.controller'
+import { TicketsController } from './tickets.controller'
+import { TicketsService } from './tickets.service'
+import { AppConfig } from './app.config'
 import { ZendeskService } from './zendesk.service'
-import { ZendeskConfig } from './zendesk.config'
 
-describe('ZendeskController', () => {
-  let zendeskController: ZendeskController
+describe('TicketsController', () => {
+  let zendeskController: TicketsController
 
   beforeEach(async () => {
     const app: TestingModule = await Test.createTestingModule({
-      controllers: [ZendeskController],
-      providers: [ZendeskService, ZendeskConfig],
+      controllers: [TicketsController],
+      providers: [TicketsService, ZendeskService, AppConfig],
     }).compile()
 
-    zendeskController = app.get<ZendeskController>(ZendeskController)
+    zendeskController = app.get<TicketsController>(TicketsController)
   })
 
   describe('inheritParentTicketFields', () => {
@@ -26,10 +27,8 @@ describe('ZendeskController', () => {
         id: 2,
         group_id: 20,
         requester_id: 102,
-        custom_fields: [
-          { id: 10000005, value: 'product_information' },
-          { id: 10000002, value: 'store_lesquin' },
-        ],
+        store: 'store_lesquin',
+        contactReason: 'product_information',
       })
     })
   })

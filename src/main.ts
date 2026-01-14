@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core'
-import { ZendeskModule } from './zendesk.module'
+import { TicketsModule } from './tickets.module'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
 
 async function bootstrap() {
-  const app = await NestFactory.create(ZendeskModule)
+  const app = await NestFactory.create(TicketsModule)
 
   const config = new DocumentBuilder()
     .setTitle('Technical Test Webhook Zendesk')
